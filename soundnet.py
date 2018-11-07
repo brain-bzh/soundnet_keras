@@ -23,7 +23,8 @@ def build_model():
     Builds up the SoundNet model and loads the weights from a given model file (8-layer model is kept at models/sound8.npy).
     :return:
     """
-    model_weights = np.load('models/sound8.npy').item()
+    model_weights = np.load('models/sound8.npy',encoding='latin1').item()
+    print(model_weights.keys())
     model = Sequential()
     model.add(InputLayer(batch_input_shape=(1, None, 1)))
 
@@ -102,4 +103,4 @@ def predictions_to_scenes(prediction):
 if __name__ == '__main__':
     #  SoundNet demonstration
     prediction = predict_scene_from_audio_file('railroad_audio.wav')
-    print predictions_to_scenes(prediction)
+    print(predictions_to_scenes(prediction))
